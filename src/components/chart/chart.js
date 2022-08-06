@@ -1,70 +1,272 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import { useSites } from "../../contexts/SitesContext";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
+function Chart() {
+  const [
+    sites,
+    checkedSites,
+    co2Data,
+    resLen,
+    checkedSensorType,
+    tempData,
+    humidityData,
+    alData,
+    vocData,
+    uvData,
+    pressureData,
+    soundData,
+    // co2DataThres
+  ] = useSites();
 
 
-function Chart({ siteSensorDataLat }) {
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Realtime data",
-      },
-    },
-  };
+  // let options = {};
 
+  console.log(sites);
 
-  const labels = Array.from(Array(15).keys());
+  const [options, setOptions] = useState({});
 
-const min = -1000;
-const max = 1000;
+  useEffect(() => {
+    console.log(checkedSensorType);
+     if (checkedSensorType[0] === "temperature") {
+      // console.log("ijdiej");
+      tempData.get("SIT001");
+      let seriesData = [];
+      for (let i = 0; i < checkedSites.size; i++) {
+        let cs = Array.from(checkedSites);
+        seriesData.push({
+          data: tempData.get(cs[i]),
+          name: sites.find(o => o._id === cs[i]).name,
+          turboThreshold: 0,
+        });
+      }
+      setOptions({
+        chart: {
+          type: "spline",
+        },
+        xAxis: {
+          labels: {
+            enabled: false,
+          },
+        },
+        accessibility: {
+          enabled: false,
+        },
+        title: {
+          text: "Temperature Data (°C)",
+        },
+        series: seriesData,
+      });
+    }
+    else if (checkedSensorType[0] === "humidity") {
+      let seriesData = [];
+      for (let i = 0; i < checkedSites.size; i++) {
+        let cs = Array.from(checkedSites);
+        seriesData.push({
+          data: humidityData.get(cs[i]),
+          name: sites.find(o => o._id === cs[i]).name,
+          turboThreshold: 0,
+        });
+      }
+      setOptions({
+        chart: {
+          type: "spline",
+        },
+        xAxis: {
+          labels: {
+            enabled: false,
+          },
+        },
+        accessibility: {
+          enabled: false,
+        },
+        title: {
+          text: "Humidity Data",
+        },
+        series: seriesData,
+      });
+    }
+    else if (checkedSensorType[0] === "ambientLight") {
+      let seriesData = [];
+      for (let i = 0; i < checkedSites.size; i++) {
+        let cs = Array.from(checkedSites);
+        seriesData.push({
+          data: alData.get(cs[i]),
+          name: sites.find(o => o._id === cs[i]).name,
+          turboThreshold: 0,
+        });
+      }
+      setOptions({
+        chart: {
+          type: "spline",
+        },
+        xAxis: {
+          labels: {
+            enabled: false,
+          },
+        },
+        accessibility: {
+          enabled: false,
+        },
+        title: {
+          text: "Ambient Light Data",
+        },
+        series: seriesData,
+      });
+    }
 
-console.log(siteSensorDataLat);
+    else if (checkedSensorType[0] === "voc") {
+      let seriesData = [];
+      for (let i = 0; i < checkedSites.size; i++) {
+        let cs = Array.from(checkedSites);
+        seriesData.push({
+          data: vocData.get(cs[i]),
+          name: sites.find(o => o._id === cs[i]).name,
+          turboThreshold: 0,
+        });
+      }
+      setOptions({
+        chart: {
+          type: "spline",
+        },
+        xAxis: {
+          labels: {
+            enabled: false,
+          },
+        },
+        accessibility: {
+          enabled: false,
+        },
+        title: {
+          text: "VOC Data (in ppb)",
+        },
+        series: seriesData,
+      });
+    }
 
-const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: Array.from(Array(1895).keys()),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: Array.from(Array(12).keys()),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
-  
-  return <Line options={options} data={data} />;
+    else if (checkedSensorType[0] === "uvIndex") {
+      let seriesData = [];
+      for (let i = 0; i < checkedSites.size; i++) {
+        let cs = Array.from(checkedSites);
+        seriesData.push({
+          data: uvData.get(cs[i]),
+          name: sites.find(o => o._id === cs[i]).name,
+          turboThreshold: 0,
+        });
+      }
+      setOptions({
+        chart: {
+          type: "spline",
+        },
+        xAxis: {
+          labels: {
+            enabled: false,
+          },
+        },
+        accessibility: {
+          enabled: false,
+        },
+        title: {
+          text: "UV Index",
+        },
+        series: seriesData,
+      });
+    }
+
+    else if (checkedSensorType[0] === "pressure") {
+      let seriesData = [];
+      for (let i = 0; i < checkedSites.size; i++) {
+        let cs = Array.from(checkedSites);
+        seriesData.push({
+          data: pressureData.get(cs[i]),
+          name: sites.find(o => o._id === cs[i]).name,
+          turboThreshold: 0,
+        });
+      }
+      setOptions({
+        chart: {
+          type: "spline",
+        },
+        xAxis: {
+          labels: {
+            enabled: false,
+          },
+        },
+        accessibility: {
+          enabled: false,
+        },
+        title: {
+          text: "Pressure Data",
+        },
+        series: seriesData,
+      });
+    }
+
+    else if (checkedSensorType[0] === "sound") {
+      let seriesData = [];
+      for (let i = 0; i < checkedSites.size; i++) {
+        let cs = Array.from(checkedSites);
+        seriesData.push({
+          data: soundData.get(cs[i]),
+          name: sites.find(o => o._id === cs[i]).name,
+          turboThreshold: 0,
+        });
+      }
+      setOptions({
+        chart: {
+          type: "spline",
+        },
+        xAxis: {
+          labels: {
+            enabled: false,
+          },
+        },
+        accessibility: {
+          enabled: false,
+        },
+        title: {
+          text: "Sound Data",
+        },
+        series: seriesData,
+      });
+    }
+
+    else if (checkedSensorType[0] === "co2") {
+      
+      let seriesData = [];
+      for (let i = 0; i < checkedSites.size; i++) {
+        let cs = Array.from(checkedSites);
+        seriesData.push({
+          data: co2Data.get(cs[i]),
+          name: sites.find(o => o._id === cs[i]).name,
+          turboThreshold: 0,
+        });
+      }
+      setOptions({
+        chart: {
+          type: "spline",
+        },
+        xAxis: {
+          labels: {
+            enabled: false,
+          },
+        },
+        accessibility: {
+          enabled: false,
+        },
+        title: {
+          text: "CO2 (in ppm)",
+        },
+        series: seriesData,
+      });
+    }
+  }, [resLen, checkedSensorType, co2Data]);
+
+  console.log(options);
+
+  return <HighchartsReact highcharts={Highcharts} options={options} />;
 }
 
 export default Chart;

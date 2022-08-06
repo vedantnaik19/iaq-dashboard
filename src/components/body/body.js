@@ -3,8 +3,10 @@ import "./body.css";
 import Chart from "../chart/chart";
 import ChartOption from "../chart-option/chart-option";
 import SideBar from "../side-bar/side-bar";
+import Info from "../info/info";
 
 function Body() {
+ 
   return (
     <div className="container-fluid">
       <div className="row ">
@@ -15,6 +17,7 @@ function Body() {
           <div>
             <ChartOption />
             <Chart />
+            <Info/>
           </div>
         </div>
       </div>

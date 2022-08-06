@@ -1,8 +1,10 @@
+import React from 'react';
+
 import "./side-bar.css";
 import { useSites, useUpdateCheckedSites } from "../../contexts/SitesContext";
 
 const SideBar = () => {
-  const handleOnChange = useUpdateCheckedSites();
+  const [handleOnChange] = useUpdateCheckedSites();
   const [sites, checkedSites] = useSites();
   return (
     <div className="side-bar-container">
