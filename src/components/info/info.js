@@ -22,34 +22,34 @@ export default function Info() {
   return (
     <div className="info-container">
       {checkedSensorType[0] === "co2" && (
-        <div>
-          <span style={{ color: "#056d36" }}>&#9632; </span>
-          <span>&lt; 350: Healthy and general air quality </span>
+        <ul>
+          <li>
+          <span>0-350: Healthy and general air quality </span>
+          </li>
 
-          <span className="space"></span>
+          <li>
+          <span>351 - 450 Acceptable range</span>
+          </li>
 
-          <span style={{ color: "#4ca804" }}>&#9632; </span>
-          <span>&lt; 450 Acceptable range</span>
-          <span className="space"></span>
 
-          <span style={{ color: "#a5cf3c" }}>&#9632; </span>
-          <span>&lt; 700 Filthy and uncomfortable</span>
-          <span className="space"></span>
+          <li>
+          <span>451-700 Filthy and uncomfortable</span>
+          </li>
 
-          <span style={{ color: "#f5e61c" }}>&#9632; </span>
-          <span>&lt; 1000 Drowsiness</span>
-          <span className="space"></span>
+          <li>
+          <span>700-1000 Drowsiness</span>
+          </li>
 
-          <span style={{ color: "#f69c09" }}>&#9632; </span>
-          <span>&lt; 2500 Adverse health effects</span>
-          <span className="space"></span>
+          <li>
+          <span>1000 - 2500 Adverse health effects</span>
+          </li>
 
-          <span style={{ color: "#d82726" }}>&#9632; </span>
+          <li>
           <span>
             &lt; 5000 Exposure for more than 8h may lead to brain damage, coma,
-            death
-          </span>
-        </div>
+            death</span>
+            </li>
+        </ul>
       )}
 
       {checkedSensorType[0] === "voc" && (
