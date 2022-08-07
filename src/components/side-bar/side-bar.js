@@ -4,11 +4,23 @@ import "./side-bar.css";
 import { useSites, useUpdateCheckedSites } from "../../contexts/SitesContext";
 import ReactTimeAgo from "react-time-ago";
 
-
 const SideBar = () => {
   const [handleOnChange] = useUpdateCheckedSites();
-  const [sites, checkedSites] = useSites();
-  console.log(Date.now());
+  const [
+    sites,
+    checkedSites,
+    co2Data,
+    resLen,
+    checkedSensorType,
+    tempData,
+    humidityData,
+    alData,
+    vocData,
+    uvData,
+    pressureData,
+    soundData,
+    // co2DataThres
+  ] = useSites();
 
   return (
     <div className="side-bar-container">
@@ -25,8 +37,9 @@ const SideBar = () => {
           />
           <label className="form-check-label">{site.name}</label>
           <p>
-            <small class="text-muted">
-              Last updated: <ReactTimeAgo date={site.updatedAt} locale="en-US"/>
+            <small className="text-muted">
+              Last updated:{" "}
+              <ReactTimeAgo date={site.updatedAt} locale="en-US" />
             </small>
           </p>
           <span className="space"></span>

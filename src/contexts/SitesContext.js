@@ -53,7 +53,8 @@ export function SitesProvider({ children }) {
 
   async function getLatestData() {
     if (checkedSites.size > 0) {
-      console.log("Fetching latest data...");
+      console.log("Fetching sensor data...");
+      // getSites();
       const cs = Array.from(checkedSites);
       for (let i = 0; i < cs.length; i++) {
         reqInstance.get(`iot/all/${cs[i]}`).then((res) => {
@@ -61,8 +62,6 @@ export function SitesProvider({ children }) {
           // For Co2
           let msCo2 = co2Data;
           let co2DataSeries = [];
-
-         
 
           // For temp
           let msTemp = tempData;
@@ -93,15 +92,13 @@ export function SitesProvider({ children }) {
           let soundDataSeries = [];
 
           setResLen(res.data.length);
-          console.log("Data length", res.data.length);
+          // console.log("Data length", res.data.length);
           for (let j = 1; j < res.data.length; j++) {
             // if(j%2===0)
             co2DataSeries.push([
               timeConverter(res.data[j].createdAt),
               res.data[j].co2,
             ]);
-
-           
 
             tempDataSeries.push([
               timeConverter(res.data[j].createdAt),
@@ -160,13 +157,13 @@ export function SitesProvider({ children }) {
 
           msSound.set(siteId, soundDataSeries);
           setSoundData(msSound);
-
         });
       }
     }
   }
 
-  useEffect(() => {
+  async function getSites() {
+    console.log("Fetching sites data...");
     reqInstance.get("sites/all").then((res) => {
       //   console.log(res.data);
       setSites(res.data);
@@ -174,6 +171,14 @@ export function SitesProvider({ children }) {
       ms.add(res.data[0]._id);
       setCheckedSites(ms);
     });
+  }
+
+  useEffect(() => {
+    getSites();
+    const interval = setInterval(() => getSites(), 60000);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (

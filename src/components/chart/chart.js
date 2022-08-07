@@ -21,16 +21,15 @@ function Chart() {
     // co2DataThres
   ] = useSites();
 
-
   // let options = {};
 
-  console.log(sites);
+  // console.log(sites);
 
   const [options, setOptions] = useState({});
 
   useEffect(() => {
-    console.log(checkedSensorType);
-     if (checkedSensorType[0] === "temperature") {
+    // console.log(checkedSensorType);
+    if (checkedSensorType[0] === "temperature") {
       // console.log("ijdiej");
       tempData.get("SIT001");
       let seriesData = [];
@@ -38,7 +37,7 @@ function Chart() {
         let cs = Array.from(checkedSites);
         seriesData.push({
           data: tempData.get(cs[i]),
-          name: sites.find(o => o._id === cs[i]).name,
+          name: sites.find((o) => o._id === cs[i]).name,
           turboThreshold: 0,
         });
       }
@@ -59,14 +58,13 @@ function Chart() {
         },
         series: seriesData,
       });
-    }
-    else if (checkedSensorType[0] === "humidity") {
+    } else if (checkedSensorType[0] === "humidity") {
       let seriesData = [];
       for (let i = 0; i < checkedSites.size; i++) {
         let cs = Array.from(checkedSites);
         seriesData.push({
           data: humidityData.get(cs[i]),
-          name: sites.find(o => o._id === cs[i]).name,
+          name: sites.find((o) => o._id === cs[i]).name,
           turboThreshold: 0,
         });
       }
@@ -87,14 +85,13 @@ function Chart() {
         },
         series: seriesData,
       });
-    }
-    else if (checkedSensorType[0] === "ambientLight") {
+    } else if (checkedSensorType[0] === "ambientLight") {
       let seriesData = [];
       for (let i = 0; i < checkedSites.size; i++) {
         let cs = Array.from(checkedSites);
         seriesData.push({
           data: alData.get(cs[i]),
-          name: sites.find(o => o._id === cs[i]).name,
+          name: sites.find((o) => o._id === cs[i]).name,
           turboThreshold: 0,
         });
       }
@@ -115,15 +112,13 @@ function Chart() {
         },
         series: seriesData,
       });
-    }
-
-    else if (checkedSensorType[0] === "voc") {
+    } else if (checkedSensorType[0] === "voc") {
       let seriesData = [];
       for (let i = 0; i < checkedSites.size; i++) {
         let cs = Array.from(checkedSites);
         seriesData.push({
           data: vocData.get(cs[i]),
-          name: sites.find(o => o._id === cs[i]).name,
+          name: sites.find((o) => o._id === cs[i]).name,
           turboThreshold: 0,
         });
       }
@@ -136,6 +131,17 @@ function Chart() {
             enabled: false,
           },
         },
+        yAxis: [
+          {
+            plotLines: [
+              {
+                color: "red",
+                value: "500", 
+                width: "0.8",
+              },
+            ],
+          },
+        ],
         accessibility: {
           enabled: false,
         },
@@ -144,15 +150,13 @@ function Chart() {
         },
         series: seriesData,
       });
-    }
-
-    else if (checkedSensorType[0] === "uvIndex") {
+    } else if (checkedSensorType[0] === "uvIndex") {
       let seriesData = [];
       for (let i = 0; i < checkedSites.size; i++) {
         let cs = Array.from(checkedSites);
         seriesData.push({
           data: uvData.get(cs[i]),
-          name: sites.find(o => o._id === cs[i]).name,
+          name: sites.find((o) => o._id === cs[i]).name,
           turboThreshold: 0,
         });
       }
@@ -173,15 +177,13 @@ function Chart() {
         },
         series: seriesData,
       });
-    }
-
-    else if (checkedSensorType[0] === "pressure") {
+    } else if (checkedSensorType[0] === "pressure") {
       let seriesData = [];
       for (let i = 0; i < checkedSites.size; i++) {
         let cs = Array.from(checkedSites);
         seriesData.push({
           data: pressureData.get(cs[i]),
-          name: sites.find(o => o._id === cs[i]).name,
+          name: sites.find((o) => o._id === cs[i]).name,
           turboThreshold: 0,
         });
       }
@@ -202,15 +204,13 @@ function Chart() {
         },
         series: seriesData,
       });
-    }
-
-    else if (checkedSensorType[0] === "sound") {
+    } else if (checkedSensorType[0] === "sound") {
       let seriesData = [];
       for (let i = 0; i < checkedSites.size; i++) {
         let cs = Array.from(checkedSites);
         seriesData.push({
           data: soundData.get(cs[i]),
-          name: sites.find(o => o._id === cs[i]).name,
+          name: sites.find((o) => o._id === cs[i]).name,
           turboThreshold: 0,
         });
       }
@@ -231,16 +231,13 @@ function Chart() {
         },
         series: seriesData,
       });
-    }
-
-    else if (checkedSensorType[0] === "co2") {
-      
+    } else if (checkedSensorType[0] === "co2") {
       let seriesData = [];
       for (let i = 0; i < checkedSites.size; i++) {
         let cs = Array.from(checkedSites);
         seriesData.push({
           data: co2Data.get(cs[i]),
-          name: sites.find(o => o._id === cs[i]).name,
+          name: sites.find((o) => o._id === cs[i]).name,
           turboThreshold: 0,
         });
       }
@@ -253,6 +250,17 @@ function Chart() {
             enabled: false,
           },
         },
+        yAxis: [
+          {
+            plotLines: [
+              {
+                color: "red",
+                value: "450", 
+                width: "0.8",
+              },
+            ],
+          },
+        ],
         accessibility: {
           enabled: false,
         },
@@ -264,7 +272,7 @@ function Chart() {
     }
   }, [resLen, checkedSensorType, co2Data]);
 
-  console.log(options);
+  // console.log(options);
 
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 }
