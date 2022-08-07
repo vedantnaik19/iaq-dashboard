@@ -55,7 +55,7 @@ function Chart() {
           enabled: false,
         },
         title: {
-          text: "Temperature Data (°C)",
+          text: "Temperature (in °C)",
         },
         series: seriesData,
       });
@@ -83,7 +83,7 @@ function Chart() {
           enabled: false,
         },
         title: {
-          text: "Humidity Data",
+          text: "Humidity (in %)",
         },
         series: seriesData,
       });
@@ -111,7 +111,7 @@ function Chart() {
           enabled: false,
         },
         title: {
-          text: "Ambient Light Data",
+          text: "Ambient Light (lx)",
         },
         series: seriesData,
       });
@@ -198,7 +198,7 @@ function Chart() {
           enabled: false,
         },
         title: {
-          text: "Pressure Data",
+          text: "Pressure (in mbar)",
         },
         series: seriesData,
       });
@@ -227,7 +227,7 @@ function Chart() {
           enabled: false,
         },
         title: {
-          text: "Sound Data",
+          text: "Sound Level (in dB)",
         },
         series: seriesData,
       });

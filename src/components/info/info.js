@@ -28,25 +28,25 @@ export default function Info() {
           </li>
 
           <li>
-          <span>351 - 450 Acceptable range</span>
+          <span>351-450: Acceptable range</span>
           </li>
 
 
           <li>
-          <span>451-700 Filthy and uncomfortable</span>
+          <span>451-700: Filthy and uncomfortable</span>
           </li>
 
           <li>
-          <span>700-1000 Drowsiness</span>
+          <span>700-1000: Drowsiness</span>
           </li>
 
           <li>
-          <span>1000 - 2500 Adverse health effects</span>
+          <span>1000-2500: Adverse health effects</span>
           </li>
 
           <li>
           <span>
-            &lt; 5000 Exposure for more than 8h may lead to brain damage, coma,
+            &lt; 5000: Exposure for more than 8h may lead to brain damage, coma,
             death</span>
             </li>
         </ul>
