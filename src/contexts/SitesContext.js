@@ -57,83 +57,83 @@ export function SitesProvider({ children }) {
       // getSites();
       const cs = Array.from(checkedSites);
       for (let i = 0; i < cs.length; i++) {
-        reqInstance.get(`iot/all-alt/${cs[i]}`).then((res) => {
+        reqInstance.get(`iot/all/${cs[i]}`).then((res) => {
           let siteId = cs[i];
           // For Co2
           let msCo2 = co2Data;
-          let co2DataSeries = res.data["co2DataSeries"];
+          let co2DataSeries = [];
 
           // For temp
           let msTemp = tempData;
-          let tempDataSeries = res.data["tempDataSeries"];
+          let tempDataSeries = [];
 
           // For humidity
           let msHumidity = humidityData;
-          let humidityDataSeries = res.data["humidityDataSeries"];
+          let humidityDataSeries = [];
 
           // For ambientLight
           let msAl = alData;
-          let alDataSeries = res.data["alDataSeries"];
+          let alDataSeries = [];
 
           // For voc
           let msVoc = vocData;
-          let vocDataSeries = res.data["vocDataSeries"];
+          let vocDataSeries = [];
 
           // For uv
           let msUv = uvData;
-          let uvDataSeries = res.data["uvDataSeries"];
+          let uvDataSeries = [];
 
           // For pressure
           let msPressure = pressureData;
-          let pressureDataSeries = res.data["pressureDataSeries"];
+          let pressureDataSeries = [];
 
           // For sound
           let msSound = soundData;
-          let soundDataSeries = res.data["soundDataSeries"];
+          let soundDataSeries = [];
 
           setResLen(res.data.length);
          
-          // for (let j = 1; j < res.data.length; j++) {
-          //   // if(j%2===0)
-          //   co2DataSeries.push([
-          //     timeConverter(res.data[j].createdAt),
-          //     res.data[j].co2,
-          //   ]);
+          for (let j = 1; j < res.data.length; j++) {
+            // if(j%2===0)
+            co2DataSeries.push([
+              timeConverter(res.data[j].createdAt),
+              res.data[j].co2,
+            ]);
 
-          //   tempDataSeries.push([
-          //     timeConverter(res.data[j].createdAt),
-          //     res.data[j].temperature,
-          //   ]);
+            tempDataSeries.push([
+              timeConverter(res.data[j].createdAt),
+              res.data[j].temperature,
+            ]);
 
-          //   humidityDataSeries.push([
-          //     timeConverter(res.data[j].createdAt),
-          //     res.data[j].humidity,
-          //   ]);
+            humidityDataSeries.push([
+              timeConverter(res.data[j].createdAt),
+              res.data[j].humidity,
+            ]);
 
-          //   alDataSeries.push([
-          //     timeConverter(res.data[j].createdAt),
-          //     res.data[j].ambientLight,
-          //   ]);
+            alDataSeries.push([
+              timeConverter(res.data[j].createdAt),
+              res.data[j].ambientLight,
+            ]);
 
-          //   vocDataSeries.push([
-          //     timeConverter(res.data[j].createdAt),
-          //     res.data[j].voc,
-          //   ]);
+            vocDataSeries.push([
+              timeConverter(res.data[j].createdAt),
+              res.data[j].voc,
+            ]);
 
-          //   uvDataSeries.push([
-          //     timeConverter(res.data[j].createdAt),
-          //     res.data[j].uvIndex,
-          //   ]);
-          //   pressureDataSeries.push([
-          //     timeConverter(res.data[j].createdAt),
-          //     res.data[j].pressure,
-          //   ]);
+            uvDataSeries.push([
+              timeConverter(res.data[j].createdAt),
+              res.data[j].uvIndex,
+            ]);
+            pressureDataSeries.push([
+              timeConverter(res.data[j].createdAt),
+              res.data[j].pressure,
+            ]);
 
-          //   soundDataSeries.push([
-          //     timeConverter(res.data[j].createdAt),
-          //     res.data[j].sound,
-          //   ]);
-          // }
+            soundDataSeries.push([
+              timeConverter(res.data[j].createdAt),
+              res.data[j].sound,
+            ]);
+          }
          
           msCo2.set(siteId, co2DataSeries);
           setCo2Data(msCo2);
