@@ -45,10 +45,10 @@ export function SitesProvider({ children }) {
 
   useEffect(() => {
     getLatestData();
-    const interval = setInterval(() => getLatestData(), 25000);
-    return () => {
-      clearInterval(interval);
-    };
+    // const interval = setInterval(() => getLatestData(), 25000);
+    // return () => {
+    //   clearInterval(interval);
+    // };
   }, [checkedSites]);
 
   async function getLatestData() {
@@ -57,83 +57,84 @@ export function SitesProvider({ children }) {
       // getSites();
       const cs = Array.from(checkedSites);
       for (let i = 0; i < cs.length; i++) {
-        reqInstance.get(`iot/all/${cs[i]}`).then((res) => {
+        reqInstance.get(`iot/all-alt/${cs[i]}`).then((res) => {
           let siteId = cs[i];
           // For Co2
           let msCo2 = co2Data;
-          let co2DataSeries = [];
+          let co2DataSeries = res.data["co2DataSeries"];
 
           // For temp
           let msTemp = tempData;
-          let tempDataSeries = [];
+          let tempDataSeries = res.data["tempDataSeries"];
 
           // For humidity
           let msHumidity = humidityData;
-          let humidityDataSeries = [];
+          let humidityDataSeries = res.data["humidityDataSeries"];
 
           // For ambientLight
           let msAl = alData;
-          let alDataSeries = [];
+          let alDataSeries = res.data["alDataSeries"];
 
           // For voc
           let msVoc = vocData;
-          let vocDataSeries = [];
+          let vocDataSeries = res.data["vocDataSeries"];
 
           // For uv
           let msUv = uvData;
-          let uvDataSeries = [];
+          let uvDataSeries = res.data["uvDataSeries"];
 
           // For pressure
           let msPressure = pressureData;
-          let pressureDataSeries = [];
+          let pressureDataSeries = res.data["pressureDataSeries"];
 
           // For sound
           let msSound = soundData;
-          let soundDataSeries = [];
+          let soundDataSeries = res.data["soundDataSeries"];
 
           setResLen(res.data.length);
-          // console.log("Data length", res.data.length);
-          for (let j = 1; j < res.data.length; j++) {
-            // if(j%2===0)
-            co2DataSeries.push([
-              timeConverter(res.data[j].createdAt),
-              res.data[j].co2,
-            ]);
+         
+          // for (let j = 1; j < res.data.length; j++) {
+          //   // if(j%2===0)
+          //   co2DataSeries.push([
+          //     timeConverter(res.data[j].createdAt),
+          //     res.data[j].co2,
+          //   ]);
 
-            tempDataSeries.push([
-              timeConverter(res.data[j].createdAt),
-              res.data[j].temperature,
-            ]);
+          //   tempDataSeries.push([
+          //     timeConverter(res.data[j].createdAt),
+          //     res.data[j].temperature,
+          //   ]);
 
-            humidityDataSeries.push([
-              timeConverter(res.data[j].createdAt),
-              res.data[j].humidity,
-            ]);
+          //   humidityDataSeries.push([
+          //     timeConverter(res.data[j].createdAt),
+          //     res.data[j].humidity,
+          //   ]);
 
-            alDataSeries.push([
-              timeConverter(res.data[j].createdAt),
-              res.data[j].ambientLight,
-            ]);
+          //   alDataSeries.push([
+          //     timeConverter(res.data[j].createdAt),
+          //     res.data[j].ambientLight,
+          //   ]);
 
-            vocDataSeries.push([
-              timeConverter(res.data[j].createdAt),
-              res.data[j].voc,
-            ]);
+          //   vocDataSeries.push([
+          //     timeConverter(res.data[j].createdAt),
+          //     res.data[j].voc,
+          //   ]);
 
-            uvDataSeries.push([
-              timeConverter(res.data[j].createdAt),
-              res.data[j].uvIndex,
-            ]);
-            pressureDataSeries.push([
-              timeConverter(res.data[j].createdAt),
-              res.data[j].pressure,
-            ]);
+          //   uvDataSeries.push([
+          //     timeConverter(res.data[j].createdAt),
+          //     res.data[j].uvIndex,
+          //   ]);
+          //   pressureDataSeries.push([
+          //     timeConverter(res.data[j].createdAt),
+          //     res.data[j].pressure,
+          //   ]);
 
-            soundDataSeries.push([
-              timeConverter(res.data[j].createdAt),
-              res.data[j].sound,
-            ]);
-          }
+          //   soundDataSeries.push([
+          //     timeConverter(res.data[j].createdAt),
+          //     res.data[j].sound,
+          //   ]);
+          // }
+         
           msCo2.set(siteId, co2DataSeries);
           setCo2Data(msCo2);
 
@@ -175,7 +176,7 @@ export function SitesProvider({ children }) {
 
   useEffect(() => {
     getSites();
-    const interval = setInterval(() => getSites(), 60000);
+    const interval = setInterval(() => getSites(), 250000);
     return () => {
       clearInterval(interval);
     };
