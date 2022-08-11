@@ -45,10 +45,10 @@ export function SitesProvider({ children }) {
 
   useEffect(() => {
     getLatestData();
-    // const interval = setInterval(() => getLatestData(), 25000);
-    // return () => {
-    //   clearInterval(interval);
-    // };
+    const interval = setInterval(() => getLatestData(), 25000);
+    return () => {
+      clearInterval(interval);
+    };
   }, [checkedSites]);
 
   async function getLatestData() {
