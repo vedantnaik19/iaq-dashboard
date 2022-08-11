@@ -45,7 +45,7 @@ export function SitesProvider({ children }) {
 
   useEffect(() => {
     getLatestData();
-    const interval = setInterval(() => getLatestData(), 25000);
+    const interval = setInterval(() => getLatestData(), 250000);
     return () => {
       clearInterval(interval);
     };
