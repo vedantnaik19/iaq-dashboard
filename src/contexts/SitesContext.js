@@ -92,7 +92,7 @@ export function SitesProvider({ children }) {
           let soundDataSeries = [];
 
           setResLen(res.data.length);
-         
+
           for (let j = 1; j < res.data.length; j++) {
             // if(j%2===0)
             co2DataSeries.push([
@@ -134,7 +134,7 @@ export function SitesProvider({ children }) {
               res.data[j].sound,
             ]);
           }
-         
+
           msCo2.set(siteId, co2DataSeries);
           setCo2Data(msCo2);
 
@@ -168,9 +168,11 @@ export function SitesProvider({ children }) {
     reqInstance.get("sites/all").then((res) => {
       //   console.log(res.data);
       setSites(res.data);
-      let ms = new Set();
-      ms.add(res.data[0]._id);
-      setCheckedSites(ms);
+      if (checkedSites.size == 0) {
+        let ms = new Set();
+        ms.add(res.data[0]._id);
+        setCheckedSites(ms);
+      }
     });
   }
 
