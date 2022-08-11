@@ -172,6 +172,9 @@ export function SitesProvider({ children }) {
         let ms = new Set();
         ms.add(res.data[0]._id);
         setCheckedSites(ms);
+      } else {
+        let ms = checkedSites;
+        setCheckedSites(ms);
       }
     });
   }
