@@ -255,7 +255,7 @@ function Chart() {
             plotLines: [
               {
                 color: "red",
-                value: "450", 
+                value: "1000", 
                 width: "0.8",
               },
             ],
