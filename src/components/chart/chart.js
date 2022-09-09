@@ -45,6 +45,18 @@ function Chart() {
         chart: {
           type: "spline",
         },
+        plotOptions: {
+          series: {
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true,
+                },
+              },
+            },
+          },
+        },
         xAxis: {
           labels: {
             enabled: false,
@@ -71,6 +83,18 @@ function Chart() {
       setOptions({
         chart: {
           type: "spline",
+        },
+        plotOptions: {
+          series: {
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true,
+                },
+              },
+            },
+          },
         },
         xAxis: {
           labels: {
@@ -99,6 +123,18 @@ function Chart() {
         chart: {
           type: "spline",
         },
+        plotOptions: {
+          series: {
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true,
+                },
+              },
+            },
+          },
+        },
         xAxis: {
           labels: {
             enabled: false,
@@ -126,6 +162,18 @@ function Chart() {
         chart: {
           type: "spline",
         },
+        plotOptions: {
+          series: {
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true,
+                },
+              },
+            },
+          },
+        },
         xAxis: {
           labels: {
             enabled: false,
@@ -136,7 +184,7 @@ function Chart() {
             plotLines: [
               {
                 color: "red",
-                value: "500", 
+                value: "500",
                 width: "0.8",
               },
             ],
@@ -163,6 +211,18 @@ function Chart() {
       setOptions({
         chart: {
           type: "spline",
+        },
+        plotOptions: {
+          series: {
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true,
+                },
+              },
+            },
+          },
         },
         xAxis: {
           labels: {
@@ -191,6 +251,18 @@ function Chart() {
         chart: {
           type: "spline",
         },
+        plotOptions: {
+          series: {
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true,
+                },
+              },
+            },
+          },
+        },
         xAxis: {
           labels: {
             enabled: false,
@@ -217,6 +289,18 @@ function Chart() {
       setOptions({
         chart: {
           type: "spline",
+        },
+        plotOptions: {
+          series: {
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true,
+                },
+              },
+            },
+          },
         },
         xAxis: {
           labels: {
@@ -250,12 +334,24 @@ function Chart() {
             enabled: false,
           },
         },
+        plotOptions: {
+          series: {
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true,
+                },
+              },
+            },
+          },
+        },
         yAxis: [
           {
             plotLines: [
               {
                 color: "red",
-                value: "1000", 
+                value: "1000",
                 width: "0.8",
               },
             ],

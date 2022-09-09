@@ -167,10 +167,11 @@ export function SitesProvider({ children }) {
     console.log("Fetching sites data...");
     reqInstance.get("sites/all").then((res) => {
       //   console.log(res.data);
-      setSites(res.data);
+      let sd = res.data.sort((a, b) => a.updatedAt - b.updatedAt); 
+      setSites(sd);
       if (checkedSites.size == 0) {
         let ms = new Set();
-        ms.add(res.data[0]._id);
+        ms.add(sd[0]._id);
         setCheckedSites(ms);
       } else {
         let ms = checkedSites;

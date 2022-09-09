@@ -1,0 +1,24 @@
+.current-container{
+    color: #1E1E1E;
+
+}
+
+img{
+    width: 24px;
+    height: 24px;
+    color: cornflowerblue;
+}
+
+.current-header{
+    background: linear-gradient(90deg, rgba(21,53,113,1) 0%, rgba(19,43,80,1) 26%, rgba(63,83,109,1) 100%);
+    height: 100%;  
+    /* display: flex;
+    flex-direction: row;
+    justify-content: around;
+    align-items: stretch; */
+    color: aliceblue;
+}
+
+.card{
+    width: 22vw;
+}
